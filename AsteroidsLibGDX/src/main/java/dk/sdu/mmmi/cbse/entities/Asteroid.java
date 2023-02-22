@@ -5,11 +5,9 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.MathUtils;
 import dk.sdu.mmmi.cbse.main.Game;
 
-public class Asteroid extends SpaceObject {
+import java.util.Random;
 
-    private boolean left;
-    private boolean right;
-    private boolean up;
+public class Asteroid extends SpaceObject {
 
     private int type;
     private float speed;
@@ -18,20 +16,22 @@ public class Asteroid extends SpaceObject {
     public static final int Large = 2;
 
     public Asteroid(float x, float y, int type) {
+        this.x=x;
+        this.y=y;
         this.type=type;
         if (type==Small){
-            width = 16;
-            height = 16;
+            width = 100;
+            height = 100;
             speed = 90;
         }
         else if (type==Medium){
-            width = 25;
-            height = 25;
+            width = 125;
+            height = 125;
             speed = 70;
         }
         else if (type==Large){
-            width = 40;
-            height = 40;
+            width = 140;
+            height = 140;
             speed = 50;
         }
 
@@ -43,13 +43,15 @@ public class Asteroid extends SpaceObject {
         shapey = new float[4];
 
         radians = 3.1415f / 2;
-        rotationSpeed = 3;
+        Random random = new Random();
+
+        rotationSpeed = random.nextInt(5);
 
     }
 
     private void setShape() {
-        shapex[0] = x + MathUtils.cos(radians) * 8;
-        shapey[0] = y + MathUtils.sin(radians) * 8;
+        shapex[0] = x + MathUtils.cos(radians) * 5;
+        shapey[0] = y + MathUtils.sin(radians) * 5;
 
         shapex[1] = x + MathUtils.cos(radians - 4 * 3.1415f / 5) * 8;
         shapey[1] = y + MathUtils.sin(radians - 4 * 3.1145f / 5) * 8;
@@ -61,48 +63,12 @@ public class Asteroid extends SpaceObject {
         shapey[3] = y + MathUtils.sin(radians + 4 * 3.1415f / 5) * 8;
     }
 
-    public void setLeft(boolean b) {
-        left = b;
-    }
-
-    public void setRight(boolean b) {
-        right = b;
-    }
-
-    public void setUp(boolean b) {
-        up = b;
-    }
-
     public void update(float dt) {
 
-        // turning
-        if (left) {
-            radians += rotationSpeed * dt;
-        } else if (right) {
-            radians -= rotationSpeed * dt;
-        }
-
-        // accelerating
-        if (up) {
-            dx += MathUtils.cos(radians) * acceleration * dt;
-            dy += MathUtils.sin(radians) * acceleration * dt;
-        }
-
-        // deceleration
-        float vec = (float) Math.sqrt(dx * dx + dy * dy);
-        if (vec > 0) {
-            dx -= (dx / vec) * deceleration * dt;
-            dy -= (dy / vec) * deceleration * dt;
-        }
-        if (vec > maxSpeed) {
-            dx = (dx / vec) * maxSpeed;
-            dy = (dy / vec) * maxSpeed;
-        }
-
+        radians -= rotationSpeed * dt;
         // set position
         x += dx * dt;
         y += dy * dt;
-
         // set shape
         setShape();
 
