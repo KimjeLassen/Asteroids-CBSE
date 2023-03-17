@@ -77,6 +77,10 @@ public class Asteroid extends SpaceObject {
 
     }
 
+    public void destroy(Bullet bullet) {
+
+    }
+
     public void draw(ShapeRenderer sr) {
 
         sr.setColor(1, 1, 1, 1);

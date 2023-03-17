@@ -23,15 +23,16 @@ public class Bullet extends SpaceObject {
     public boolean getRemove() {
         return remove;
     }
+
     public void update(float dt) {
-        x+=dx*dt;
-        y+=dy*dt;
+        x+= dx * dt;
+        y+= dy * dt;
         wrap();
 
     }
     public void draw (ShapeRenderer sr) {
         sr.setColor(1,1,1,1);
-        sr.begin();
+        sr.begin(ShapeType.Filled);
         sr.circle(x-width/2, y-height/2,width/2);
         sr.end();
 
