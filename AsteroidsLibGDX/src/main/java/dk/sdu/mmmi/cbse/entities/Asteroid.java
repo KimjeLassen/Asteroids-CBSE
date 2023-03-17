@@ -45,7 +45,7 @@ public class Asteroid extends SpaceObject {
         radians = 3.1415f / 2;
         Random random = new Random();
 
-        rotationSpeed = random.nextInt(5);
+        rotationSpeed = random.nextInt(4);
 
     }
 
