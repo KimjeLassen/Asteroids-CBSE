@@ -11,6 +11,7 @@ public class Asteroid extends SpaceObject {
 
     private int type;
     private float speed;
+    private boolean remove;
     public static final int Small = 0;
     public static final int Medium = 1;
     public static final int Large = 2;
@@ -76,9 +77,15 @@ public class Asteroid extends SpaceObject {
         wrap();
 
     }
+    public float getX(){
+        return x;
+    }
+    public float getY(){
+        return y;
+    }
 
-    public void destroy(Bullet bullet) {
-
+    public boolean getRemove() {
+        return remove;
     }
 
     public void draw(ShapeRenderer sr) {

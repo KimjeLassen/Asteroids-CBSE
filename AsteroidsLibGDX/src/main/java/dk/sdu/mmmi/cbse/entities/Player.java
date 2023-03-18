@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class Player extends SpaceObject {
 
     private ArrayList<Bullet> bullets;
+    private int max_Bullets = 5;
 
     private boolean left;
     private boolean right;
@@ -65,6 +66,7 @@ public class Player extends SpaceObject {
     }
 
     public void shoot(){
+        if(bullets.size()==max_Bullets) return;
         bullets.add(new Bullet(x,y,radians));
     }
     public void update(float dt) {

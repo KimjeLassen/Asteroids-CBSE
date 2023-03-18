@@ -8,6 +8,8 @@ import java.awt.*;
 
 public class Bullet extends SpaceObject {
     private boolean remove;
+    private int timer;
+    private float life;
     public Bullet (float x, float y, float radians) {
         this.x = x;
         this.y = y;
@@ -18,6 +20,8 @@ public class Bullet extends SpaceObject {
         dy = MathUtils.sin(radians) * speed;
 
         width = height = 2;
+        life = 0;
+        timer = 1;
     }
 
     public boolean getRemove() {
@@ -27,8 +31,21 @@ public class Bullet extends SpaceObject {
     public void update(float dt) {
         x+= dx * dt;
         y+= dy * dt;
+
+        life += dt;
+        if (life>timer) {
+            remove = true;
+        }
+
         wrap();
 
+
+    }
+    public float getX() {
+        return x;
+    }
+    public float getY() {
+        return y;
     }
     public void draw (ShapeRenderer sr) {
         sr.setColor(1,1,1,1);

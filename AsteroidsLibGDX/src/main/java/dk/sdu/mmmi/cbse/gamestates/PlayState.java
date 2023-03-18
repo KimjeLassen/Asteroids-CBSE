@@ -19,7 +19,6 @@ public class PlayState extends GameState {
 
 
 	private ArrayList<Asteroid> asteroids;
-	private Asteroid asteroid;
 	
 	public PlayState(GameStateManager gsm) {
 		super(gsm);
@@ -28,21 +27,25 @@ public class PlayState extends GameState {
 	public void init() {
 		
 		sr = new ShapeRenderer();
-		bullets= new ArrayList<Bullet>();
+		bullets= new ArrayList<>();
+		asteroids = new ArrayList<>();
 
 		player = new Player(bullets);
 		Random r = new Random();
 		float number = r.nextInt(400);
-		asteroid = new Asteroid(number,number,Asteroid.Large);
+		asteroids.add(new Asteroid(number,number,Asteroid.Large));
 		
 	}
-	
+
 	public void update(float dt) {
 		
 		handleInput();
 		
 		player.update(dt);
-		asteroid.update(dt);
+		for (Asteroid asteroid : asteroids) {
+			asteroid.update(dt);
+		}
+
 		for (int i=0;i<bullets.size();i++) {
 			bullets.get(i).update(dt);
 			if(bullets.get(i).getRemove()) {
@@ -56,9 +59,11 @@ public class PlayState extends GameState {
 	
 	public void draw() {
 		player.draw(sr);
-		asteroid.draw(sr);
-		for (int i=0;i<bullets.size();i++) {
-			bullets.get(i).draw(sr);
+		for (Asteroid asteroid : asteroids) {
+			asteroid.draw(sr);
+		}
+		for (Bullet bullet : bullets) {
+			bullet.draw(sr);
 		}
 	}
 	
