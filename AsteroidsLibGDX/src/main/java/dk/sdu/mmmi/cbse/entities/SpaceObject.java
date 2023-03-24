@@ -19,7 +19,35 @@ public class SpaceObject {
 	
 	protected float[] shapex;
 	protected float[] shapey;
-	
+
+	protected float getX(){
+		return x;
+	}
+	protected float getY() {
+		return y;
+	}
+	public float[] getShapex() {
+		return shapex;
+	}
+	public float[] getShapey() {
+		return shapey;
+	}
+
+	public boolean contains(float x, float y) {
+		boolean b = false;
+		for (int i = 0, j = shapex.length - 1;
+			 i < shapex.length;
+			 j=i++) {
+			if((shapey[i] > y) != (shapey[j]>y) &&
+					(x < (shapex[j] - shapex[i]) *
+					(y - shapey[i]) / (shapey[j] - shapey[i])
+					+shapex[i])) {
+				b= !b;
+			}
+		}
+		return b;
+	}
+
 	protected void wrap() {
 		if(x < 0) x = Game.WIDTH;
 		if(x > Game.WIDTH) x = 0;

@@ -53,8 +53,21 @@ public class PlayState extends GameState {
 				i--;
 			}
 		}
-
-		
+		checkCollision();
+	}
+	public void checkCollision() {
+		for (int i=0; i< bullets.size();i++) {
+			Bullet b = bullets.get(i);
+			for (int j=0; j<asteroids.size();j++) {
+				Asteroid a = asteroids.get(j);
+				if(a.contains(b.getX(), b.getY())) {
+					bullets.remove(i);
+					i--;
+					asteroids.remove(j);
+					j--;
+				}
+			}
+		}
 	}
 	
 	public void draw() {
