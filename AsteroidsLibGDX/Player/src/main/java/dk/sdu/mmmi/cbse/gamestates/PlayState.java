@@ -34,6 +34,7 @@ public class PlayState extends GameState {
 		Random r = new Random();
 		float number = r.nextInt(400);
 		asteroids.add(new Asteroid(number,number,Asteroid.Large));
+		asteroids.add(new Asteroid(number, number, Asteroid.Small));
 		
 	}
 
