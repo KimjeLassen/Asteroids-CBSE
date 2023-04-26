@@ -3,10 +3,14 @@ package dk.sdu.mmmi.cbse.enemy;
 import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
+import dk.sdu.mmmi.cbse.common.data.entityparts.LifePart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.MovingPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.services.IGamePluginService;
 import dk.sdu.mmmi.cbse.commonenemy.Enemy;
+
+import java.util.Random;
+
 
 public class EnemyPlugin implements IGamePluginService {
     private Entity enemy;
@@ -28,16 +32,23 @@ public class EnemyPlugin implements IGamePluginService {
     private Entity createEnemy(GameData gameData) {
         float deacceleration = 10;
         float acceleration = 150;
-        float maxSpeed = 500;
+        float maxSpeed = 300;
         float rotationSpeed = 5;
-        float x = gameData.getDisplayWidth()/2;
-        float y = gameData.getDisplayHeight()/2;
+        float x = new Random().nextFloat() * gameData.getDisplayWidth();
+        float y = new Random().nextFloat() * gameData.getDisplayHeight();
         float radians = 3.1415f / 2;
 
-        Entity enemy = new Enemy();
-        enemy.setRadius(20);
-        enemy.add(new MovingPart(0,maxSpeed,maxSpeed, rotationSpeed));
-        enemy.add(new PositionPart(30, 30, radians));
-        return enemy;
+        float[] colour = new float[4];
+        colour[0] = 1.0f;
+        colour[1] = 0.0f;
+        colour[2] = 0.0f;
+        colour[3] = 1.0f;
+
+        Entity enemyShip = new Enemy();
+        enemyShip.setRadius(8);
+        enemyShip.add(new MovingPart(deacceleration, acceleration, maxSpeed, rotationSpeed));
+        enemyShip.add(new PositionPart(x, y, radians));
+        enemyShip.add(new LifePart(2));
+        return enemyShip;
     }
 }

@@ -9,7 +9,6 @@
     <artifactId>Asteroid</artifactId>
     <packaging>jar</packaging>
     <name>Asteroid</name>
-
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>

@@ -10,8 +10,6 @@ import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 
 public class AsteroidProcessor implements IEntityProcessingService {
 
-    private IAsteroidSplitter asteroidSplitter = new AsteroidSplitterImpl();
-
     @Override
     public void process(GameData gameData, World world) {
 
@@ -22,23 +20,15 @@ public class AsteroidProcessor implements IEntityProcessingService {
 
             int numPoints = 12;
             float speed = (float) Math.random() * 10f + 20f;
-            if (lifePart.getLife() == 1) {
-                numPoints = 8;
-                speed = (float) Math.random() * 30f + 70f;
-            } else if (lifePart.getLife() == 2) {
-                numPoints = 10;
-                speed = (float) Math.random() * 10f + 50f;
-            }
             movingPart.setSpeed(speed);
             movingPart.setUp(true);
 
             movingPart.process(gameData, asteroid);
             positionPart.process(gameData, asteroid);
+            lifePart.process(gameData, asteroid);
+
 
             // Split event
-            if (lifePart.isHit()) {
-                asteroidSplitter.createSplitAsteroid(asteroid, world);
-            }
             setShape(asteroid, numPoints);
         }
 
@@ -47,13 +37,6 @@ public class AsteroidProcessor implements IEntityProcessingService {
     /**
      * Dependency Injection using OSGi Declarative Services
      */
-    public void setAsteroidSplitter(IAsteroidSplitter asteroidSplitter) {
-        this.asteroidSplitter = asteroidSplitter;
-    }
-
-    public void removeAsteroidSplitter(IAsteroidSplitter asteroidSplitter) {
-        this.asteroidSplitter = null;
-    }
 
     private void setShape(Entity entity, int numPoints) {
         PositionPart position = entity.getPart(PositionPart.class);

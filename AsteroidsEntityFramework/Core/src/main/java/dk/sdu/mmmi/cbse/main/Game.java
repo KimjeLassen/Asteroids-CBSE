@@ -24,8 +24,6 @@ public class Game
     private ShapeRenderer sr;
 
     private final GameData gameData = new GameData();
-    private List<IEntityProcessingService> entityProcessors = new ArrayList<>();
-    private List<IPostEntityProcessingService> entityPlugins = new ArrayList<>();
     private World world = new World();
 
     @Override
