@@ -18,6 +18,12 @@
         <module>Common</module>
         <module>Player</module>
         <module>Enemy</module>
+        <module>Asteroid</module>
+        <module>Collision</module>
+        <module>Bullet</module>
+        <module>CommonEnemy</module>
+        <module>CommonBullet</module>
+
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
