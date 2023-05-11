@@ -31,11 +31,16 @@ public class AsteroidProcessor implements IEntityProcessingService {
             // Split event
             setShape(asteroid, numPoints);
         }
-
     }
 
     /**
-     * Dependency Injection using OSGi Declarative Services
+     * Sets the shape of an asteroid
+     *
+     * Pre-condition: An entity must be able to be drawn
+     * Post-condition: Has set the shape of the asteroid
+     *
+     * @param entity entity whose shape needs to be set
+     * @param numPoints amount of points the asteroid will have
      */
 
     private void setShape(Entity entity, int numPoints) {

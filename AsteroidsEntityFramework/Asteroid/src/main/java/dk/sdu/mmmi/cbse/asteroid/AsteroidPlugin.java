@@ -29,6 +29,15 @@ public class AsteroidPlugin implements IGamePluginService {
         world.removeEntity(asteroid);
     }
 
+    /**
+     * Creates an asteroid in the game
+     *
+     *  Pre-condition: Program is running. Asteroid needs to be created with default data.
+     *  Post-condition: Asteroid has been created
+     *
+     * @param gameData data for creating an asteroid
+     * @return asteroid entity
+     */
     private Entity createAsteroid(GameData gameData) {
         Entity asteroid = new Asteroid();
         float radians = (float) Math.random() * 2 * 3.1415f;
@@ -37,7 +46,7 @@ public class AsteroidPlugin implements IGamePluginService {
         asteroid.setRadius(20);
         asteroid.add(new MovingPart(0, speed, speed, 0));
         asteroid.add(new PositionPart(30, 30, radians));
-        asteroid.add(new LifePart(2));
+        asteroid.add(new LifePart(1));
 
         return asteroid;
     }
