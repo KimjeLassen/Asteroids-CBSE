@@ -9,6 +9,7 @@ module Core {
     requires spring.context;
 
     exports dk.sdu.mmmi.cbse.main;
+    exports dk.sdu.mmmi.cbse.components;
 
     uses IGamePluginService;
     uses IEntityProcessingService;
