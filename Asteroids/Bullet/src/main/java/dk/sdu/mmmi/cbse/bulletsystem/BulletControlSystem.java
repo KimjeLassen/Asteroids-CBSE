@@ -34,7 +34,16 @@ public class BulletControlSystem implements IEntityProcessingService, BulletSPI 
             setShape(bullet);
         }
     }
-
+    /**
+     * Creates an asteroid in the game
+     *
+     *  Pre-condition: Program is running. Bullet needs to be created using gameData and have a shooter.
+     *  Post-condition: Bullet has been created
+     *
+     * @param gameData data for creating a bullet
+     * @param shooter the entity shooting the bullet
+     * @return bullet entity
+     */
     @Override
     public Entity createBullet(Entity shooter, GameData gameData) {
         PositionPart shooterPos = shooter.getPart(PositionPart.class);
