@@ -31,7 +31,7 @@ public class BulletPlugin implements IGamePluginService, IBulletService {
         }
     }
     /**
-     * Creates an bullet in the game
+     * Creates a bullet in the game
      *
      *  Pre-condition: Program is running. Bullet needs to have a shooter and be created in accordance to game data.
      *  Post-condition: Bullet has been created
